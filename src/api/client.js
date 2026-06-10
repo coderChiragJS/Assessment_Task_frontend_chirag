@@ -1,6 +1,9 @@
 import { tokenStore } from '../lib/tokenStore.js';
 
-const BASE = '/api';
+// In production (Vercel) set VITE_API_BASE_URL to the deployed backend, e.g.
+// https://your-backend.up.railway.app/api . Locally it falls back to "/api",
+// which the Vite dev server proxies to the backend (see vite.config.js).
+const BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 export class ApiError extends Error {
   constructor(status, message, details) {
